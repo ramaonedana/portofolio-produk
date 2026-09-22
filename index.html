@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- FITUR SEO & OPEN GRAPH -->
+    <title>Bodhilabs - Digital Product Storefront</title>
+    <meta name="description" content="Katalog produk digital premium, template website, dan aplikasi siap pakai karya Bodhilabs. Percepat pertumbuhan bisnis Anda sekarang.">
+    <meta name="keywords" content="digital product, website template, saas, ui kit, web developer, bodhilabs">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bodhilabs - Digital Product Storefront">
+    <meta property="og:description" content="Jelajahi katalog aplikasi dan website premium kami untuk mempercepat pertumbuhan bisnis Anda.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://bodhilabs.id">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            orange: '#FF8A00',
+                            dark: '#1A1A1A',
+                            light: '#F8F9FA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* DARK MODE OVERRIDES */
+        html.dark body {
+            background-color: #0b0f19;
+            color: #f1f5f9;
+        }
+        html.dark .bento-card, 
+        html.dark .bg-white {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+        html.dark nav {
+            background-color: rgba(30, 41, 59, 0.95) !important;
+            border-color: #334155 !important;
+        }
+        html.dark .text-brand-dark {
+            color: #ffffff !important;
+        }
+        html.dark .text-gray-500, 
+        html.dark .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+        html.dark .bg-gray-50 {
+            background-color: #0f172a !important;
+        }
+        html.dark .border-gray-100, 
+        html.dark .border-gray-200 {
+            border-color: #334155 !important;
+        }
+        html.dark input, 
+        html.dark textarea {
+            color: #ffffff !important;
+            background-color: #0f172a !important;
+            border-color: #334155 !important;
+        }
+
+        /* Styling dasar untuk Bento Box */
+        .bento-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        /* Animasi mengambang untuk karakter 3D */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Kustomisasi scrollbar agar lebih estetik */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF8A00;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e07900;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans pt-28 bg-gray-50 dark:bg-[#0b0f19] transition-colors duration-300">
+
+    <!-- NAVBAR (FLOATING & STICKY) -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md px-6 py-3 rounded-full shadow-xl flex items-center gap-8 border border-gray-100 transition-all duration-300">
+        <div class="font-bold text-xl tracking-tight text-brand-dark">
+            Bodhi<span class="text-brand-orange">labs.</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+            <a href="#home" id="nav-home" class="hover:text-brand-orange transition border-b-2 border-brand-orange text-brand-orange pb-1 nav-link">Beranda</a>
+            <a href="#products" id="nav-products" class="hover:text-brand-orange transition border-b-2 border-transparent pb-1 nav-link">Katalog Produk</a>
+            <a href="#contact" id="nav-contact" class="hover:text-brand-orange transition border-b-2 border-transparent pb-1 nav-link">Kontak</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600 hover:text-brand-orange transition shadow-sm">
+                <i class="ph-bold ph-moon"></i>
+            </button>
+            <a href="#products" class="hidden md:inline-block bg-brand-orange hover:bg-orange-600 text-white font-bold py-2.5 px-6 rounded-full transition shadow-lg shadow-orange-500/30">
+                Lihat Katalog
+            </a>
+        </div>
+    </nav>
+
+    <!-- PUBLIC VIEW WRAPPER -->
+    <div id="public-view" class="w-full max-w-[1400px] mx-auto px-4 md:px-6 flex flex-col gap-8">
+        
+        <!-- SECTION 1: HERO (BENTO) -->
+        <section class="bento-card p-8 md:p-16 flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative" id="home">
+            <div class="md:w-1/2 z-10">
+                <div class="flex gap-3 mb-6">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 text-white flex items-center justify-center text-lg shadow-md hover:-translate-y-1 transition"><i class="ph-bold ph-instagram-logo"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center text-lg shadow-md hover:-translate-y-1 transition"><i class="ph-bold ph-tiktok-logo"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-gray-800 text-white flex items-center justify-center text-lg shadow-md hover:-translate-y-1 transition"><i class="ph-bold ph-github-logo"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg shadow-md hover:-translate-y-1 transition"><i class="ph-bold ph-youtube-logo"></i></a>
+                </div>
+                <h1 id="hero-greeting" class="text-4xl md:text-6xl font-extrabold text-brand-dark mb-6 leading-tight">
+                    Halo, Saya <span class="text-brand-orange">Bodhi</span>
+                </h1>
+                <p id="hero-desc" class="text-gray-600 mb-10 text-lg leading-relaxed max-w-lg">
+                    Saya mendesain dan mengembangkan produk digital yang cantik, fungsional, dan siap pakai. Jelajahi katalog aplikasi dan website premium saya untuk mempercepat pertumbuhan bisnis Anda.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#products" class="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition shadow-lg shadow-orange-500/30 flex items-center gap-2">
+                        Jelajahi Produk <i class="ph-bold ph-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="bg-white border-2 border-gray-200 hover:border-brand-orange text-brand-dark hover:text-brand-orange font-bold py-3 px-8 rounded-full transition flex items-center gap-2 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200">
+                        <i class="ph-bold ph-envelope-simple"></i> Hubungi Saya
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative flex justify-center">
+                <!-- Ornamen Latar Belakang Lingkaran -->
+                <div class="absolute inset-0 bg-orange-100 rounded-full blur-3xl opacity-50 w-[120%] h-[120%] -left-[10%] -top-[10%] -z-10 dark:bg-orange-900/20"></div>
+                <!-- Gambar 3D Laki-laki memegang laptop -->
+                <img id="hero-image" src="https://cdni.iconscout.com/illustration/premium/thumb/web-developer-4584674-3823485.png" alt="Bodhi" class="w-full max-w-md drop-shadow-2xl animate-float object-contain">
+            </div>
+        </section>
+
+        <!-- STATISTICS BAR (BENTO) -->
+        <section class="bento-card p-8 flex flex-wrap justify-between items-center gap-6">
+            <div class="text-center w-full sm:w-auto flex-1">
+                <div class="text-3xl font-extrabold text-brand-dark mb-1">15+</div>
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Produk Rilis</div>
+            </div>
+            <div class="hidden sm:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+            <div class="text-center w-full sm:w-auto flex-1">
+                <div class="text-3xl font-extrabold text-brand-dark mb-1">10k+</div>
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Pengguna Aktif</div>
+            </div>
+            <div class="hidden sm:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+            <div class="text-center w-full sm:w-auto flex-1">
+                <div class="text-3xl font-extrabold text-brand-dark mb-1">99%</div>
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Kepuasan Klien</div>
+            </div>
+            <div class="hidden sm:block w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+            <div class="text-center w-full sm:w-auto flex-1">
+                <div class="text-3xl font-extrabold text-brand-dark mb-1">24/7</div>
+                <div class="text-sm font-medium text-gray-500 uppercase tracking-wider">Dukungan Teknis</div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PRODUCTS CATALOG (BENTO) -->
+        <section class="bento-card p-8 md:p-12" id="products">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-brand-dark mb-4">Produk Digital Kami</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Kumpulan produk aplikasi dan website premium yang siap Anda gunakan. Jelajahi detail fitur dan coba langsung melalui Live Demo.</p>
+            </div>
+
+            <!-- FITUR: FILTER & SEARCH -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+                <!-- Filter Pills -->
+                <div id="filter-container" class="flex flex-wrap justify-center gap-2 overflow-x-auto w-full md:w-auto hide-scrollbar">
+                    <!-- Kategori diisi oleh JS -->
+                </div>
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-72 shrink-0">
+                    <input type="text" id="search-input" placeholder="Cari nama produk..." class="w-full bg-gray-50 px-5 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-orange transition text-brand-dark">
+                    <i class="ph-bold ph-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produk akan di-render di sini oleh JavaScript -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: CONTACT (BENTO) -->
+        <section class="bento-card p-8 md:p-12" id="contact">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-5/12 flex flex-col items-center text-center">
+                    <img id="public-contact-img" src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Contact Us" class="w-48 h-48 object-cover rounded-full mb-6 border-4 border-orange-50 shadow-lg dark:border-gray-700">
+                    <h2 class="text-2xl font-bold text-brand-dark mb-2">Mari Berdiskusi</h2>
+                    <p class="text-gray-500 text-sm">Tertarik membeli lisensi, melakukan kustomisasi produk, atau memiliki pertanyaan lain? Jangan ragu untuk mengirim pesan.</p>
+                </div>
+                <div class="md:w-7/12 w-full">
+                    <form id="public-contact-form" class="flex flex-col gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" id="contact-name" placeholder="Nama Lengkap" required class="w-full bg-gray-50 text-brand-dark px-5 py-4 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition">
+                            <input type="email" id="contact-email" placeholder="Alamat Email" required class="w-full bg-gray-50 text-brand-dark px-5 py-4 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition">
+                        </div>
+                        <input type="text" id="contact-subject" placeholder="Subjek (Misal: Kustomisasi Produk XYZ)" required class="w-full bg-gray-50 text-brand-dark px-5 py-4 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition">
+                        <textarea id="contact-message" placeholder="Tuliskan detail kebutuhan Anda di sini..." rows="4" required class="w-full bg-gray-50 text-brand-dark px-5 py-4 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition resize-none"></textarea>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 mt-2">
+                            <button type="submit" class="flex-1 bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-xl transition shadow-lg shadow-orange-500/30">Kirim Pesan Email</button>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Bodhi,%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20produk%20digital%20Anda." target="_blank" class="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 px-8 rounded-xl transition shadow-lg shadow-green-500/30 flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-whatsapp-logo text-xl"></i> Chat WhatsApp
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- END PUBLIC VIEW WRAPPER -->
+
+    <!-- FOOTER -->
+    <footer class="w-full max-w-[1400px] mx-auto mt-10 py-8 border-t border-gray-200 dark:border-gray-800 flex justify-center items-center gap-3 text-sm text-gray-500 relative z-10 transition-colors duration-300">
+        <p class="font-medium">&copy; <span id="current-year"></span> Bodhilabs. All rights reserved.</p>
+        <button onclick="openLoginModal()" class="text-gray-400 hover:text-brand-orange transition flex items-center p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800" title="Admin Login">
+            <i class="ph-fill ph-lock-key text-base"></i>
+        </button>
+    </footer>
+
+    <!-- FITUR: PUBLIC PRODUCT DETAIL MODAL -->
+    <div id="product-detail-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[110] hidden flex items-center justify-center opacity-0 transition-opacity p-4 md:p-8">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full max-w-5xl max-h-[90vh] shadow-2xl scale-95 transition-transform flex flex-col md:flex-row overflow-hidden" id="product-detail-card">
+            <!-- Kolom Gambar -->
+            <div class="md:w-1/2 bg-gray-50 dark:bg-gray-900 relative">
+                <button onclick="closePublicProductModal()" class="md:hidden absolute top-4 right-4 bg-white/50 backdrop-blur-md text-gray-800 p-2 rounded-full z-10"><i class="ph-bold ph-x"></i></button>
+                <img id="detail-img" src="" alt="Product Detail" class="w-full h-64 md:h-full object-cover">
+                <!-- Promo Badge Detail -->
+                <div id="detail-promo-badge" class="hidden absolute top-6 left-6 bg-red-500 text-white text-sm font-black px-4 py-2 rounded-full shadow-lg animate-pulse tracking-widest">
+                    PROMO SALE
+                </div>
+            </div>
+            <!-- Kolom Konten -->
+            <div class="md:w-1/2 p-8 md:p-10 flex flex-col h-full overflow-y-auto">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="detail-category" class="text-brand-orange text-xs font-bold uppercase tracking-wider mb-2 block">Kategori</span>
+                        <h2 id="detail-title" class="text-3xl font-extrabold text-brand-dark mb-2">Nama Produk</h2>
+                    </div>
+                    <button onclick="closePublicProductModal()" class="hidden md:block text-gray-400 hover:text-red-500 bg-gray-50 hover:bg-red-50 dark:bg-gray-700 p-2 rounded-full transition"><i class="ph-bold ph-x text-xl"></i></button>
+                </div>
+                
+                <p id="detail-desc" class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed flex-1"></p>
+                
+                <div class="mb-8">
+                    <h4 class="text-sm font-bold text-brand-dark mb-3">Teknologi Pendukung</h4>
+                    <div id="detail-tech" class="flex flex-wrap gap-2">
+                        <!-- Tech stack pills -->
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 dark:border-gray-700 pt-6 mt-auto">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-gray-500 text-sm">Harga Lisensi Penuh</span>
+                        <div class="text-right" id="detail-price-container">
+                            <!-- Harga dirender via JS -->
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a id="detail-demo-btn" href="#" target="_blank" class="flex-1 text-center bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-brand-dark font-bold py-4 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-arrow-square-out"></i> Live Demo
+                        </a>
+                        <button id="detail-buy-btn" onclick="simulateCheckout()" class="flex-1 bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl transition shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-shopping-cart"></i> Beli Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LOGIN CMS -->
+    <div id="login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity">
+        <div class="bg-white p-10 rounded-[2rem] w-full max-w-[400px] shadow-2xl scale-95 transition-transform text-center flex flex-col items-center" id="login-card">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mb-5 text-3xl bg-orange-50 text-brand-orange">
+                <i class="ph-bold ph-lock-key"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Akses CMS</h2>
+            <p class="text-sm text-gray-500 mb-8">Masukkan kata sandi administrator.</p>
+            
+            <input type="password" id="admin-password" placeholder="•••••" class="w-full text-center text-2xl tracking-widest bg-white px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange mb-6 text-gray-800">
+            
+            <div class="flex flex-col gap-3 w-full">
+                <button onclick="attemptLogin()" class="w-full bg-[#242A38] hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition shadow-md">Masuk</button>
+                <button onclick="closeLoginModal()" class="w-full bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold py-4 rounded-xl transition">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CMS VIEW WRAPPER (HIDDEN BY DEFAULT) -->
+    <div id="cms-view" class="hidden min-h-screen bg-transparent px-4 md:px-6 flex-col pb-20 pt-8 absolute inset-0 z-40">
+        <!-- CMS HEADER -->
+        <div class="w-full max-w-[1400px] mx-auto bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mb-8 flex justify-between items-center mt-6 dark:bg-gray-800 dark:border-gray-700">
+            <div>
+                <h1 class="text-2xl font-bold text-brand-dark">Bodhilabs Workspace</h1>
+                <p class="text-sm text-gray-500">Kelola konten dan pesan masuk Anda.</p>
+            </div>
+            <button onclick="logoutAdmin()" class="bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 px-6 rounded-lg transition flex items-center gap-2 dark:bg-red-900/30 dark:hover:bg-red-900/50">
+                <i class="ph-bold ph-sign-out"></i> Keluar
+            </button>
+        </div>
+
+        <!-- CMS CONTENT -->
+        <div class="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row gap-8">
+            <!-- CMS SIDEBAR (TABS) -->
+            <div class="md:w-64 shrink-0 flex flex-col gap-2">
+                <button onclick="switchAdminTab('tab-profile')" id="btn-tab-profile" class="cms-tab-btn w-full text-left px-5 py-4 rounded-xl font-semibold transition bg-brand-orange text-white shadow-md">
+                    <i class="ph-bold ph-user-circle mr-2"></i> Profil & Hero
+                </button>
+                <button onclick="switchAdminTab('tab-products')" id="btn-tab-products" class="cms-tab-btn w-full text-left px-5 py-4 rounded-xl font-semibold transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700">
+                    <i class="ph-bold ph-storefront mr-2"></i> Katalog Produk
+                </button>
+                <button onclick="switchAdminTab('tab-messages')" id="btn-tab-messages" class="cms-tab-btn w-full text-left px-5 py-4 rounded-xl font-semibold transition bg-white text-gray-600 hover:bg-gray-100 border border-gray-100 relative dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700">
+                    <i class="ph-bold ph-envelope mr-2"></i> Pesan Masuk
+                    <span id="msg-badge" class="absolute top-1/2 -translate-y-1/2 right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden">0</span>
+                </button>
+            </div>
+
+            <!-- CMS PANELS -->
+            <div class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+                <!-- TAB: PROFILE -->
+                <div id="tab-profile" class="cms-panel block">
+                    <h2 class="text-xl font-bold text-brand-dark mb-6 border-b pb-4 dark:border-gray-700">Pengaturan Profil & Hero</h2>
+                    <form id="cms-profile-form" class="flex flex-col gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Teks Sapaan Utama</label>
+                            <input type="text" id="cms-hero-greeting" class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Deskripsi Layanan (Paragraf)</label>
+                            <textarea id="cms-hero-desc" rows="4" class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white"></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Upload Foto Profil -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Gambar Profil (Hero)</label>
+                                <div class="flex gap-4 items-center">
+                                    <div class="relative shrink-0 group">
+                                        <img id="cms-hero-img-preview" src="" class="w-16 h-16 rounded-xl object-cover border border-gray-200 bg-gray-50 dark:border-gray-600">
+                                        <button type="button" onclick="removeProfileImage()" class="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow-md" title="Hapus Gambar"><i class="ph-bold ph-x"></i></button>
+                                    </div>
+                                    <input type="file" id="cms-hero-img" accept="image/*" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange text-sm outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-brand-orange hover:file:bg-orange-100 cursor-pointer text-gray-600 dark:border-gray-600 dark:text-gray-300 dark:file:bg-gray-700">
+                                </div>
+                            </div>
+
+                            <!-- Upload Foto Kontak -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Gambar Kontak (Inquiry)</label>
+                                <div class="flex gap-4 items-center">
+                                    <div class="relative shrink-0 group">
+                                        <img id="cms-contact-img-preview" src="" class="w-16 h-16 rounded-xl object-cover border border-gray-200 bg-gray-50 dark:border-gray-600">
+                                        <button type="button" onclick="removeContactImage()" class="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow-md" title="Hapus Gambar"><i class="ph-bold ph-x"></i></button>
+                                    </div>
+                                    <input type="file" id="cms-contact-img" accept="image/*" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange text-sm outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-brand-orange hover:file:bg-orange-100 cursor-pointer text-gray-600 dark:border-gray-600 dark:text-gray-300 dark:file:bg-gray-700">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="bg-[#242A38] hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-xl transition shadow-md mt-4">Simpan Perubahan Profil</button>
+                    </form>
+                </div>
+
+                <!-- TAB: PRODUCTS -->
+                <div id="tab-products" class="cms-panel hidden">
+                    <div class="flex justify-between items-center border-b pb-4 mb-6 dark:border-gray-700">
+                        <h2 class="text-xl font-bold text-brand-dark">Katalog Produk Digital</h2>
+                        <button onclick="openProductModal()" class="bg-brand-orange hover:bg-orange-600 text-white font-bold py-2 px-5 rounded-lg transition shadow-md flex items-center gap-2 text-sm">
+                            <i class="ph-bold ph-plus"></i> Tambah Produk
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-600 text-sm border-y border-gray-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400">
+                                    <th class="py-3 px-4 font-semibold">Thumbnail</th>
+                                    <th class="py-3 px-4 font-semibold">Judul Produk</th>
+                                    <th class="py-3 px-4 font-semibold">Kategori</th>
+                                    <th class="py-3 px-4 font-semibold">Harga</th>
+                                    <th class="py-3 px-4 font-semibold text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cms-product-table-body" class="divide-y divide-gray-100 dark:divide-gray-700">
+                                <!-- Data diisi oleh JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB: MESSAGES -->
+                <div id="tab-messages" class="cms-panel hidden">
+                    <h2 class="text-xl font-bold text-brand-dark mb-6 border-b pb-4 dark:border-gray-700">Kotak Masuk Pesan</h2>
+                    <div id="cms-messages-list" class="flex flex-col gap-4">
+                        <!-- Pesan diisi oleh JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT FORM MODAL (CMS) -->
+    <div id="product-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] hidden items-center justify-center opacity-0 transition-opacity overflow-y-auto pt-20 pb-10">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl w-full max-w-2xl shadow-2xl scale-95 transition-transform" id="product-card">
+            <div class="flex justify-between items-center mb-6 border-b pb-4 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-brand-dark" id="prod-modal-title">Tambah Produk Baru</h2>
+                <button onclick="closeProductModal()" class="text-gray-400 hover:text-red-500"><i class="ph-bold ph-x text-xl"></i></button>
+            </div>
+            <form id="cms-product-form" class="flex flex-col gap-4">
+                <input type="hidden" id="prod-id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Nama Produk</label>
+                        <input type="text" id="prod-title" required class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Kategori Utama</label>
+                        <input type="text" id="prod-category" placeholder="Misal: SaaS, UI Kit" required class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Harga Normal (Rp)</label>
+                        <input type="number" id="prod-price" placeholder="Misal: 499000" class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Harga Promo (Rp) - <span class="text-brand-orange">Opsional</span></label>
+                        <input type="number" id="prod-promo" placeholder="Kosongkan jika tak ada promo" class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Tech Stack (Pisahkan koma)</label>
+                    <input type="text" id="prod-tech" placeholder="React, Node.js, Tailwind" class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Deskripsi Lengkap</label>
+                    <textarea id="prod-desc" rows="3" required class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">URL Live Demo (Opsional)</label>
+                    <input type="url" id="prod-link" placeholder="https://..." class="w-full bg-gray-50 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange outline-none text-gray-800 dark:bg-gray-900 dark:border-gray-600 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Gambar Produk (Upload File)</label>
+                    <div class="flex gap-4 items-center">
+                        <div class="relative shrink-0 group">
+                            <img id="prod-img-preview" src="https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image" class="w-24 h-16 rounded-xl object-cover border border-gray-200 bg-gray-50 dark:border-gray-600">
+                            <button type="button" onclick="removeProductImage()" class="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow-md" title="Hapus Gambar"><i class="ph-bold ph-x"></i></button>
+                        </div>
+                        <input type="file" id="prod-img" accept="image/*" class="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-orange text-sm outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-brand-orange hover:file:bg-orange-100 cursor-pointer text-gray-600 dark:border-gray-600 dark:text-gray-300 dark:file:bg-gray-700">
+                    </div>
+                </div>
+                <div class="mt-4 flex justify-end gap-3">
+                    <button type="button" onclick="closeProductModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-xl transition dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600">Batal</button>
+                    <button type="submit" class="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition shadow-md">Simpan Produk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CUSTOM ALERT MODAL -->
+    <div id="alert-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[200] hidden flex items-center justify-center opacity-0 transition-opacity">
+        <div class="bg-white p-10 rounded-[2rem] w-full max-w-[400px] shadow-2xl text-center transform scale-90 transition-transform flex flex-col items-center" id="alert-card">
+            <div id="alert-icon" class="mb-5"></div>
+            <h3 id="alert-title" class="text-2xl font-bold text-gray-900 mb-3"></h3>
+            <p id="alert-message" class="text-gray-500 mb-8 text-sm leading-relaxed px-4"></p>
+            <button id="alert-btn" onclick="closeAlert()" class="w-full bg-[#10B981] hover:bg-emerald-600 text-white font-bold py-4 rounded-xl transition shadow-md text-lg"></button>
+        </div>
+    </div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Bodhi,%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20produk%20digital%20Anda." target="_blank" id="floating-wa" class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20bd5a] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-40 hover:-translate-y-1 transition-all duration-300 group">
+        <i class="ph-bold ph-whatsapp-logo text-3xl"></i>
+        <span class="absolute right-16 bg-white text-gray-800 text-sm font-semibold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-gray-100">Hubungi via WA</span>
+    </a>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // IN-MEMORY DATABASE 
+        let appData = {
+            profile: {
+                greeting: "Halo, Saya Bodhi",
+                description: "Saya mendesain dan mengembangkan produk digital yang cantik, fungsional, dan siap pakai. Jelajahi katalog aplikasi dan website premium saya untuk mempercepat pertumbuhan bisnis Anda.",
+                imageUrl: "https://cdni.iconscout.com/illustration/premium/thumb/web-developer-4584674-3823485.png",
+                contactImage: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            },
+            products: [
+                {
+                    id: 1,
+                    title: "Nexus Dashboard",
+                    category: "SaaS",
+                    price: 499000,
+                    promoPrice: null, 
+                    techStack: "React, Node.js, Tailwind CSS, PostgreSQL",
+                    description: "Dashboard analitik komprehensif untuk memantau performa penjualan dan metrik pengguna dengan visualisasi data real-time. Dilengkapi sistem autentikasi multi-user dan ekspor data laporan otomatis.",
+                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    demoUrl: "#"
+                },
+                {
+                    id: 2,
+                    title: "Aura Commerce",
+                    category: "E-Commerce",
+                    price: 850000,
+                    promoPrice: 499000,
+                    techStack: "Next.js, Stripe, Supabase",
+                    description: "Aplikasi toko online siap pakai dengan keranjang dinamis, kalkulasi ongkos kirim otomatis, dan checkout terintegrasi API pembayaran. Desain mobile-first untuk kenyamanan pelanggan.",
+                    imageUrl: "https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    demoUrl: "#"
+                },
+                {
+                    id: 3,
+                    title: "Lumina Studio",
+                    category: "Landing Page",
+                    price: 250000,
+                    promoPrice: null,
+                    techStack: "HTML, CSS, JavaScript, Framer Motion",
+                    description: "Template website portfolio super cepat dengan desain minimalis dan animasi halus, cocok untuk agensi kreatif atau pekerja lepas yang ingin memamerkan karya dengan elegan.",
+                    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    demoUrl: "#"
+                }
+            ],
+            messages: []
+        };
+
+        // VARIABEL FILTER & SEARCH
+        let activeFilter = 'Semua';
+        let searchQuery = '';
+        let selectedProductForCheckout = null;
+
+        // SCROLL SPY LOGIC
+        window.addEventListener('scroll', () => {
+            const sections = ['home', 'products', 'contact'];
+            let current = 'home';
+            sections.forEach(sec => {
+                const element = document.getElementById(sec);
+                if(element) {
+                    const top = window.scrollY;
+                    const offset = element.offsetTop - 200; // tolerance
+                    const height = element.offsetHeight;
+                    if(top >= offset && top < offset + height) {
+                        current = sec;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('border-brand-orange', 'text-brand-orange');
+                link.classList.add('border-transparent');
+            });
+            const activeLink = document.getElementById(`nav-${current}`);
+            if(activeLink) {
+                activeLink.classList.remove('border-transparent');
+                activeLink.classList.add('border-brand-orange', 'text-brand-orange');
+            }
+        });
+
+        // RENDER FILTER KATEGORI
+        function renderFilters() {
+            const container = document.getElementById('filter-container');
+            if(!container) return;
+            
+            const categories = new Set(appData.products.map(p => p.category));
+            let filterHTML = `<button onclick="setFilter('Semua')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold transition whitespace-nowrap ${activeFilter === 'Semua' ? 'bg-brand-orange text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-brand-orange'}">Semua</button>`;
+            
+            categories.forEach(cat => {
+                filterHTML += `<button onclick="setFilter('${cat}')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold transition whitespace-nowrap ${activeFilter === cat ? 'bg-brand-orange text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-brand-orange'}">${cat}</button>`;
+            });
+            container.innerHTML = filterHTML;
+        }
+
+        function setFilter(category) {
+            activeFilter = category;
+            renderFilters();
+            renderProductsGrid();
+        }
+
+        // PENCARIAN
+        document.getElementById('search-input')?.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            renderProductsGrid();
+        });
+
+        // RENDER PRODUK GRID
+        function renderProductsGrid() {
+            const grid = document.getElementById('product-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            let filteredProducts = appData.products.filter(prod => {
+                const matchCategory = activeFilter === 'Semua' || prod.category === activeFilter;
+                const matchSearch = prod.title.toLowerCase().includes(searchQuery) || prod.techStack.toLowerCase().includes(searchQuery);
+                return matchCategory && matchSearch;
+            });
+            
+            if(filteredProducts.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-400 py-10">Produk tidak ditemukan.</div>';
+            } else {
+                filteredProducts.forEach(prod => {
+                    let priceHTML = '';
+                    let badgeHTML = '';
+
+                    if(prod.promoPrice && prod.promoPrice > 0) {
+                        badgeHTML = `<div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-black px-3 py-1.5 rounded-full shadow-lg animate-pulse tracking-widest">PROMO</div>`;
+                        priceHTML = `
+                            <div class="flex flex-col">
+                                <span class="text-gray-400 line-through text-xs">${formatRupiah(prod.price)}</span>
+                                <span class="text-brand-orange font-extrabold">${formatRupiah(prod.promoPrice)}</span>
+                            </div>
+                        `;
+                    } else {
+                        priceHTML = `<span class="text-brand-dark font-bold">${formatRupiah(prod.price)}</span>`;
+                    }
+
+                    grid.innerHTML += `
+                        <div onclick="openPublicProductModal(${prod.id})" class="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-[1.5rem] overflow-hidden group hover:shadow-xl hover:border-brand-orange/50 transition duration-300 flex flex-col h-full cursor-pointer relative">
+                            <div class="h-56 overflow-hidden relative">
+                                <img src="${prod.imageUrl}" alt="${prod.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <div class="absolute top-4 left-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur text-brand-dark dark:text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                    ${prod.category}
+                                </div>
+                                ${badgeHTML}
+                            </div>
+                            <div class="p-6 flex flex-col flex-1">
+                                <h3 class="text-xl font-bold text-brand-dark mb-2 group-hover:text-brand-orange transition">${prod.title}</h3>
+                                <p class="text-gray-500 text-sm mb-6 flex-1 line-clamp-2">${prod.description}</p>
+                                <div class="flex items-center justify-between mt-auto">
+                                    ${priceHTML}
+                                    <span class="text-brand-orange text-sm font-bold flex items-center gap-1">Detail <i class="ph-bold ph-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number || 0);
+        }
+
+        // PUBLIC UI MAIN RENDER
+        function renderPublicUI() {
+            let greetHTML = appData.profile.greeting;
+            if(greetHTML.includes('Bodhi')) greetHTML = greetHTML.replace('Bodhi', '<span class="text-brand-orange">Bodhi</span>');
+            
+            document.getElementById('hero-greeting').innerHTML = greetHTML;
+            document.getElementById('hero-desc').innerText = appData.profile.description;
+            document.getElementById('hero-image').src = appData.profile.imageUrl;
+            
+            const contactImgEl = document.getElementById('public-contact-img');
+            if (contactImgEl) contactImgEl.src = appData.profile.contactImage;
+
+            renderFilters();
+            renderProductsGrid();
+        }
+
+        // PUBLIC PRODUCT MODAL LOGIC
+        function openPublicProductModal(id) {
+            const prod = appData.products.find(p => p.id === id);
+            if(!prod) return;
+            
+            selectedProductForCheckout = prod;
+
+            document.getElementById('detail-img').src = prod.imageUrl;
+            document.getElementById('detail-category').innerText = prod.category;
+            document.getElementById('detail-title').innerText = prod.title;
+            document.getElementById('detail-desc').innerText = prod.description;
+            
+            // Harga & Promo Badge
+            const priceContainer = document.getElementById('detail-price-container');
+            const promoBadge = document.getElementById('detail-promo-badge');
+            
+            if(prod.promoPrice && prod.promoPrice > 0) {
+                priceContainer.innerHTML = `
+                    <div class="text-gray-400 line-through text-sm">${formatRupiah(prod.price)}</div>
+                    <div class="text-3xl font-extrabold text-brand-orange">${formatRupiah(prod.promoPrice)}</div>
+                `;
+                promoBadge.classList.remove('hidden');
+            } else {
+                priceContainer.innerHTML = `<div class="text-2xl font-bold text-brand-dark">${formatRupiah(prod.price)}</div>`;
+                promoBadge.classList.add('hidden');
+            }
+            
+            // Render Tech Stack
+            const techContainer = document.getElementById('detail-tech');
+            techContainer.innerHTML = '';
+            const techs = prod.techStack ? prod.techStack.split(',') : [];
+            techs.forEach(t => {
+                if(t.trim()) {
+                    techContainer.innerHTML += `<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600">${t.trim()}</span>`;
+                }
+            });
+
+            const demoBtn = document.getElementById('detail-demo-btn');
+            if(prod.demoUrl && prod.demoUrl !== '#') {
+                demoBtn.href = prod.demoUrl;
+                demoBtn.style.display = 'flex';
+            } else {
+                demoBtn.style.display = 'none';
+            }
+
+            const m = document.getElementById('product-detail-modal');
+            const c = document.getElementById('product-detail-card');
+            m.classList.remove('hidden'); m.classList.add('flex');
+            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
+        }
+
+        function closePublicProductModal() {
+            const m = document.getElementById('product-detail-modal');
+            const c = document.getElementById('product-detail-card');
+            m.classList.add('opacity-0'); c.classList.add('scale-95');
+            setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
+        }
+
+        // SIMULASI CHECKOUT PAYMENT GATEWAY
+        function simulateCheckout() {
+            if(!selectedProductForCheckout) return;
+            closePublicProductModal();
+            
+            showAlert('Menghubungkan ke Payment Gateway...', 'Mempersiapkan rincian tagihan untuk ' + selectedProductForCheckout.title, 'loading');
+            
+            setTimeout(() => {
+                closeAlert();
+                
+                // Gunakan Harga Promo jika ada
+                const finalPrice = selectedProductForCheckout.promoPrice > 0 ? selectedProductForCheckout.promoPrice : selectedProductForCheckout.price;
+                
+                const message = `Halo Bodhi, saya ingin membeli lisensi produk *${selectedProductForCheckout.title}* seharga ${formatRupiah(finalPrice)}. Bagaimana cara pembayarannya?`;
+                window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
+            }, 2000);
+        }
+
+        // CUSTOM ALERT SYSTEM
+        function showAlert(title, message, type = 'success') {
+            const modal = document.getElementById('alert-modal');
+            const card = document.getElementById('alert-card');
+            const icon = document.getElementById('alert-icon');
+            const btn = document.getElementById('alert-btn');
+            
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
+            btn.innerText = 'Baik, Mengerti';
+            btn.onclick = closeAlert; 
+            
+            if (type === 'success') {
+                icon.innerHTML = '<div class="w-20 h-20 rounded-full flex items-center justify-center bg-[#D1FAE5]"><i class="ph-fill ph-check-circle text-[48px] text-[#10B981]"></i></div>';
+                btn.className = 'w-full bg-[#10B981] hover:bg-emerald-600 text-white font-bold py-4 rounded-xl transition shadow-md text-lg';
+            } else if (type === 'loading') {
+                icon.innerHTML = '<div class="w-20 h-20 rounded-full flex items-center justify-center bg-orange-100"><i class="ph-bold ph-spinner animate-spin text-[40px] text-brand-orange"></i></div>';
+                btn.className = 'hidden'; 
+            } else {
+                icon.innerHTML = '<div class="w-20 h-20 rounded-full flex items-center justify-center bg-red-100"><i class="ph-bold ph-warning text-[48px] text-red-500"></i></div>';
+                btn.className = 'w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 rounded-xl transition shadow-md text-lg';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-90');
+                card.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeAlert() {
+            const modal = document.getElementById('alert-modal');
+            const card = document.getElementById('alert-card');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-90');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        // FILE UPLOAD LOGIC
+        function handleImageUpload(event, previewElementId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewElementId).src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+        function removeProfileImage() {
+            document.getElementById('cms-hero-img').value = '';
+            document.getElementById('cms-hero-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Profile';
+        }
+        function removeContactImage() {
+            document.getElementById('cms-contact-img').value = '';
+            document.getElementById('cms-contact-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Image';
+        }
+        function removeProductImage() {
+            document.getElementById('prod-img').value = '';
+            document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image';
+        }
+
+        document.getElementById('cms-hero-img').addEventListener('change', (e) => handleImageUpload(e, 'cms-hero-img-preview'));
+        document.getElementById('cms-contact-img').addEventListener('change', (e) => handleImageUpload(e, 'cms-contact-img-preview'));
+        document.getElementById('prod-img').addEventListener('change', (e) => handleImageUpload(e, 'prod-img-preview'));
+
+        // CMS AUTHENTICATION & VIEW TOGGLE
+        function openLoginModal() {
+            const m = document.getElementById('login-modal');
+            const c = document.getElementById('login-card');
+            m.classList.remove('hidden');
+            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
+        }
+        function closeLoginModal() {
+            const m = document.getElementById('login-modal');
+            const c = document.getElementById('login-card');
+            m.classList.add('opacity-0'); c.classList.add('scale-95');
+            setTimeout(() => { m.classList.add('hidden'); document.getElementById('admin-password').value = ''; }, 300);
+        }
+        function attemptLogin() {
+            const pass = document.getElementById('admin-password').value;
+            if(pass === 'admin') {
+                closeLoginModal();
+                showCMS();
+            } else {
+                showAlert('Akses Ditolak', 'Kata sandi yang Anda masukkan salah.', 'error');
+            }
+        }
+        function showCMS() {
+            document.getElementById('public-view').classList.add('hidden');
+            document.querySelector('nav').classList.add('hidden'); 
+            const waBtn = document.getElementById('floating-wa');
+            if(waBtn) waBtn.classList.add('hidden');
+            document.querySelector('footer').classList.add('hidden');
+            
+            document.getElementById('cms-view').classList.remove('hidden');
+            document.getElementById('cms-view').classList.add('flex');
+            
+            document.getElementById('cms-hero-greeting').value = appData.profile.greeting;
+            document.getElementById('cms-hero-desc').value = appData.profile.description;
+            document.getElementById('cms-hero-img').value = ''; 
+            document.getElementById('cms-hero-img-preview').src = appData.profile.imageUrl;
+            document.getElementById('cms-contact-img').value = ''; 
+            document.getElementById('cms-contact-img-preview').src = appData.profile.contactImage;
+
+            switchAdminTab('tab-profile');
+            renderCMSProducts();
+            renderCMSMessages();
+            window.scrollTo(0, 0);
+        }
+        function logoutAdmin() {
+            document.getElementById('cms-view').classList.add('hidden');
+            document.getElementById('cms-view').classList.remove('flex');
+            document.getElementById('public-view').classList.remove('hidden');
+            document.querySelector('nav').classList.remove('hidden');
+            const waBtn = document.getElementById('floating-wa');
+            if(waBtn) waBtn.classList.remove('hidden');
+            document.querySelector('footer').classList.remove('hidden');
+            
+            renderPublicUI();
+            window.scrollTo(0, 0);
+            showAlert('Sampai Jumpa', 'Anda telah keluar dari CMS. Semua perubahan telah diaplikasikan ke halaman publik.', 'success');
+        }
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.cms-panel').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('block');
+            document.querySelectorAll('.cms-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-orange', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
+            });
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('bg-brand-orange', 'text-white', 'shadow-md');
+            activeBtn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
+        }
+
+        // PROFILE CMS ACTIONS
+        document.getElementById('cms-profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            appData.profile.greeting = document.getElementById('cms-hero-greeting').value;
+            appData.profile.description = document.getElementById('cms-hero-desc').value;
+            appData.profile.imageUrl = document.getElementById('cms-hero-img-preview').src; 
+            appData.profile.contactImage = document.getElementById('cms-contact-img-preview').src; 
+            showAlert('Tersimpan', 'Pengaturan profil dan hero banner berhasil diperbarui.', 'success');
+        });
+
+        // PRODUCTS CMS ACTIONS
+        function renderCMSProducts() {
+            const tbody = document.getElementById('cms-product-table-body');
+            tbody.innerHTML = '';
+            appData.products.forEach(prod => {
+                let priceText = formatRupiah(prod.price);
+                if(prod.promoPrice && prod.promoPrice > 0) {
+                    priceText = `<span class="line-through text-xs text-gray-400 block">${formatRupiah(prod.price)}</span><span class="text-brand-orange font-bold">${formatRupiah(prod.promoPrice)}</span>`;
+                }
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="py-3 px-4"><img src="${prod.imageUrl}" class="w-16 h-10 object-cover rounded-md border border-gray-200 dark:border-gray-600"></td>
+                        <td class="py-3 px-4 font-medium text-brand-dark">${prod.title}</td>
+                        <td class="py-3 px-4 text-gray-500">${prod.category}</td>
+                        <td class="py-3 px-4 text-brand-dark">${priceText}</td>
+                        <td class="py-3 px-4 text-right">
+                            <button onclick="editProduct(${prod.id})" class="text-blue-500 hover:text-blue-700 mr-3"><i class="ph-bold ph-pencil-simple text-lg"></i></button>
+                            <button onclick="deleteProduct(${prod.id})" class="text-red-500 hover:text-red-700"><i class="ph-bold ph-trash text-lg"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function openProductModal(id = null) {
+            const m = document.getElementById('product-modal');
+            const c = document.getElementById('product-card');
+            const form = document.getElementById('cms-product-form');
+            form.reset();
+            document.getElementById('prod-img').value = ''; 
+
+            if(id) {
+                document.getElementById('prod-modal-title').innerText = "Edit Produk";
+                const prod = appData.products.find(p => p.id === id);
+                document.getElementById('prod-id').value = prod.id;
+                document.getElementById('prod-title').value = prod.title;
+                document.getElementById('prod-category').value = prod.category;
+                document.getElementById('prod-price').value = prod.price || 0;
+                document.getElementById('prod-promo').value = prod.promoPrice || ''; 
+                document.getElementById('prod-tech').value = prod.techStack || '';
+                document.getElementById('prod-desc').value = prod.description;
+                document.getElementById('prod-link').value = prod.demoUrl === '#' ? '' : prod.demoUrl;
+                document.getElementById('prod-img-preview').src = prod.imageUrl;
+            } else {
+                document.getElementById('prod-modal-title').innerText = "Tambah Produk Baru";
+                document.getElementById('prod-id').value = "";
+                document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image';
+            }
+
+            m.classList.remove('hidden'); m.classList.add('flex');
+            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
+        }
+        function closeProductModal() {
+            const m = document.getElementById('product-modal');
+            const c = document.getElementById('product-card');
+            m.classList.add('opacity-0'); c.classList.add('scale-95');
+            setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
+        }
+
+        document.getElementById('cms-product-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('prod-id').value;
+            
+            const promoVal = document.getElementById('prod-promo').value;
+            const parsedPromo = promoVal ? parseInt(promoVal) : null;
+
+            const newProd = {
+                id: id ? parseInt(id) : Date.now(),
+                title: document.getElementById('prod-title').value,
+                category: document.getElementById('prod-category').value,
+                price: parseInt(document.getElementById('prod-price').value) || 0,
+                promoPrice: parsedPromo,
+                techStack: document.getElementById('prod-tech').value,
+                description: document.getElementById('prod-desc').value,
+                demoUrl: document.getElementById('prod-link').value || "#",
+                imageUrl: document.getElementById('prod-img-preview').src
+            };
+            if(id) {
+                const idx = appData.products.findIndex(p => p.id === parseInt(id));
+                appData.products[idx] = newProd;
+            } else {
+                appData.products.push(newProd);
+            }
+            renderCMSProducts();
+            closeProductModal();
+            showAlert('Berhasil', id ? 'Produk berhasil diperbarui.' : 'Produk baru berhasil ditambahkan.', 'success');
+        });
+
+        function editProduct(id) { openProductModal(id); }
+        function deleteProduct(id) {
+            if(confirm('Yakin ingin menghapus produk ini?')) {
+                appData.products = appData.products.filter(p => p.id !== id);
+                renderCMSProducts();
+            }
+        }
+
+        // PUBLIC CONTACT FORM SUBMISSION
+        document.getElementById('public-contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newMsg = {
+                id: Date.now(),
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                subject: document.getElementById('contact-subject').value,
+                message: document.getElementById('contact-message').value,
+                date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' })
+            };
+            
+            appData.messages.unshift(newMsg);
+            e.target.reset();
+            showAlert('Pesan Terkirim!', 'Terima kasih, pesan Anda telah kami terima dan akan segera kami balas.', 'success');
+            renderCMSMessages(); 
+        });
+
+        // INBOX CMS ACTIONS
+        function renderCMSMessages() {
+            const list = document.getElementById('cms-messages-list');
+            const badge = document.getElementById('msg-badge');
+            list.innerHTML = '';
+            
+            if(appData.messages.length === 0) {
+                list.innerHTML = '<div class="text-center text-gray-400 py-10 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700">Belum ada pesan masuk.</div>';
+                badge.classList.add('hidden');
+            } else {
+                badge.innerText = appData.messages.length;
+                badge.classList.remove('hidden');
+                
+                appData.messages.forEach(msg => {
+                    list.innerHTML += `
+                        <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 flex flex-col gap-3">
+                            <div class="flex justify-between items-start border-b border-gray-200 dark:border-gray-700 pb-3">
+                                <div>
+                                    <h4 class="font-bold text-brand-dark">${msg.subject}</h4>
+                                    <p class="text-sm text-gray-500">Dari: <span class="font-semibold">${msg.name}</span> (${msg.email})</p>
+                                </div>
+                                <span class="text-xs text-gray-400 bg-white dark:bg-gray-800 px-2 py-1 rounded shadow-sm border border-gray-100 dark:border-gray-600">${msg.date}</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm whitespace-pre-line">${msg.message}</p>
+                            <div class="mt-2 text-right">
+                                <button onclick="deleteMessage(${msg.id})" class="text-xs text-red-500 hover:text-red-700 font-semibold"><i class="ph-bold ph-trash mr-1"></i> Hapus Pesan</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+        function deleteMessage(id) {
+            if(confirm('Hapus pesan ini permanen?')) {
+                appData.messages = appData.messages.filter(m => m.id !== id);
+                renderCMSMessages();
+            }
+        }
+
+        // THEME TOGGLE LOGIC
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.querySelector('#theme-toggle i');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.remove('ph-sun');
+                icon.classList.add('ph-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.classList.remove('ph-moon');
+                icon.classList.add('ph-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        // INIT THEME
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            const icon = document.querySelector('#theme-toggle i');
+            if(icon) icon.classList.replace('ph-moon', 'ph-sun');
+        }
+
+        // INITIAL LOAD
+        renderPublicUI();
+
+    </script>
+</body>
+</html>
