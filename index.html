@@ -518,7 +518,10 @@
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // IN-MEMORY DATABASE 
+        // 1. MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
+        const SCRIPT_URL = 'PASTE_URL_WEB_APP_ANDA_DI_SINI'; 
+
+        // STATE MANAGEMENT (Diisi dengan Data Sampel Bawaan)
         let appData = {
             profile: {
                 greeting: "Halo, Saya Bodhi",
@@ -529,40 +532,113 @@
             products: [
                 {
                     id: 1,
-                    title: "Nexus Dashboard",
-                    category: "SaaS",
-                    price: 499000,
-                    promoPrice: null, 
-                    techStack: "React, Node.js, Tailwind CSS, PostgreSQL",
-                    description: "Dashboard analitik komprehensif untuk memantau performa penjualan dan metrik pengguna dengan visualisasi data real-time. Dilengkapi sistem autentikasi multi-user dan ekspor data laporan otomatis.",
-                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "EduCourse - LMS Platform",
+                    category: "Web Application",
+                    price: 850000,
+                    promoPrice: 499000,
+                    techStack: "React, Node.js, Tailwind CSS",
+                    description: "Platform Learning Management System (LMS) lengkap dengan fitur video kursus, kuis interaktif, dan sertifikat otomatis. Sangat cocok untuk kreator edukasi atau sekolah.",
+                    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     demoUrl: "#"
                 },
                 {
                     id: 2,
-                    title: "Aura Commerce",
-                    category: "E-Commerce",
-                    price: 850000,
-                    promoPrice: 499000,
-                    techStack: "Next.js, Stripe, Supabase",
-                    description: "Aplikasi toko online siap pakai dengan keranjang dinamis, kalkulasi ongkos kirim otomatis, dan checkout terintegrasi API pembayaran. Desain mobile-first untuk kenyamanan pelanggan.",
-                    imageUrl: "https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "FinDash - Admin UI Kit",
+                    category: "UI Kit",
+                    price: 250000,
+                    promoPrice: 0,
+                    techStack: "Figma, Design System",
+                    description: "UI Kit dashboard keuangan premium dengan lebih dari 50+ komponen siap pakai. Dirancang khusus untuk mempermudah desainer & developer membangun aplikasi SaaS finansial.",
+                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     demoUrl: "#"
                 },
                 {
                     id: 3,
-                    title: "Lumina Studio",
-                    category: "Landing Page",
-                    price: 250000,
-                    promoPrice: null,
-                    techStack: "HTML, CSS, JavaScript, Framer Motion",
-                    description: "Template website portfolio super cepat dengan desain minimalis dan animasi halus, cocok untuk agensi kreatif atau pekerja lepas yang ingin memamerkan karya dengan elegan.",
-                    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    title: "RestoPOS - Aplikasi Kasir",
+                    category: "Mobile App",
+                    price: 1200000,
+                    promoPrice: 899000,
+                    techStack: "Flutter, Firebase",
+                    description: "Aplikasi kasir (Point of Sales) multi-platform untuk restoran dan kafe. Mendukung pencetakan struk thermal bluetooth dan manajemen stok bahan baku secara real-time.",
+                    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
                     demoUrl: "#"
                 }
             ],
-            messages: []
+            messages: [
+                {
+                    id: 101,
+                    name: "Budi Santoso",
+                    email: "budi.santoso@email.com",
+                    subject: "Kustomisasi EduCourse",
+                    message: "Halo Bodhi, saya tertarik dengan produk EduCourse. Apakah kodenya bisa dikustomisasi untuk menambahkan fitur integrasi Zoom Meeting API? Terima kasih.",
+                    date: "22 Sep 2026, 10:30"
+                }
+            ]
         };
+
+        // FUNGSI INIT DATABASE: Mengambil data dari Google Sheets saat web dibuka
+        async function initializeApp() {
+            // Tampilkan data sampel terlebih dahulu ke UI agar layar tidak kosong
+            renderPublicUI();
+
+            if (SCRIPT_URL === 'PASTE_URL_WEB_APP_ANDA_DI_SINI') {
+                showAlert('Mode Demo Aktif', 'URL Google Apps Script belum diisi. Website saat ini menampilkan data sampel bawaan. Segala perubahan melalui CMS hanya akan tersimpan sementara.', 'error');
+                return;
+            }
+
+            try {
+                // Tampilkan loading screen jika URL ada
+                const m = document.getElementById('alert-modal');
+                const c = document.getElementById('alert-card');
+                const icon = document.getElementById('alert-icon');
+                const btn = document.getElementById('alert-btn');
+                
+                document.getElementById('alert-title').innerText = 'Memuat Data Server';
+                document.getElementById('alert-message').innerText = 'Menyinkronkan data dari Google Sheets...';
+                icon.innerHTML = '<div class="w-20 h-20 rounded-full flex items-center justify-center bg-orange-100"><i class="ph-bold ph-spinner animate-spin text-[40px] text-brand-orange"></i></div>';
+                btn.className = 'hidden'; 
+                m.classList.remove('hidden');
+                setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-90'); c.classList.add('scale-100'); }, 10);
+
+                // Fetch ke Server Google
+                const response = await fetch(SCRIPT_URL);
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    appData = result.data;
+                    renderPublicUI(); // Render ulang dengan data asli dari server
+                    closeAlert();
+                } else {
+                    showAlert('Gagal Memuat Data', result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('Koneksi Terputus', 'Gagal menyambungkan ke Database. Pastikan Anda memiliki koneksi internet yang stabil.', 'error');
+            }
+        }
+
+        // FUNGSI KOMUNIKASI POST KE SERVER
+        async function sendToServer(action, data) {
+            showAlert('Menyimpan Data...', 'Berkomunikasi dengan server database...', 'loading');
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    // Kirim sebagai teks murni untuk menghindari proteksi CORS bawaan peramban
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
+                    body: JSON.stringify({ action: action, data: data })
+                });
+                const result = await response.json();
+                
+                if(result.status === 'success') {
+                    return true;
+                } else {
+                    showAlert('Gagal Menyimpan', result.message, 'error');
+                    return false;
+                }
+            } catch(error) {
+                showAlert('Error Koneksi', 'Gagal memproses ke server.', 'error');
+                return false;
+            }
+        }
 
         // VARIABEL FILTER & SEARCH
         let activeFilter = 'Semua';
@@ -910,17 +986,24 @@
             activeBtn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
         }
 
-        // PROFILE CMS ACTIONS
-        document.getElementById('cms-profile-form').addEventListener('submit', (e) => {
+        // PROFILE CMS ACTIONS (DIHUBUNGKAN KE SERVER)
+        document.getElementById('cms-profile-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            appData.profile.greeting = document.getElementById('cms-hero-greeting').value;
-            appData.profile.description = document.getElementById('cms-hero-desc').value;
-            appData.profile.imageUrl = document.getElementById('cms-hero-img-preview').src; 
-            appData.profile.contactImage = document.getElementById('cms-contact-img-preview').src; 
-            showAlert('Tersimpan', 'Pengaturan profil dan hero banner berhasil diperbarui.', 'success');
+            const newData = {
+                greeting: document.getElementById('cms-hero-greeting').value,
+                description: document.getElementById('cms-hero-desc').value,
+                imageUrl: document.getElementById('cms-hero-img-preview').src,
+                contactImage: document.getElementById('cms-contact-img-preview').src
+            };
+
+            const isSuccess = await sendToServer('update_profile', newData);
+            if (isSuccess) {
+                appData.profile = newData;
+                showAlert('Tersimpan', 'Pengaturan profil dan hero banner berhasil diperbarui.', 'success');
+            }
         });
 
-        // PRODUCTS CMS ACTIONS
+        // PRODUCTS CMS ACTIONS (DIHUBUNGKAN KE SERVER)
         function renderCMSProducts() {
             const tbody = document.getElementById('cms-product-table-body');
             tbody.innerHTML = '';
@@ -980,10 +1063,9 @@
             setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
         }
 
-        document.getElementById('cms-product-form').addEventListener('submit', (e) => {
+        document.getElementById('cms-product-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const id = document.getElementById('prod-id').value;
-            
             const promoVal = document.getElementById('prod-promo').value;
             const parsedPromo = promoVal ? parseInt(promoVal) : null;
 
@@ -998,27 +1080,37 @@
                 demoUrl: document.getElementById('prod-link').value || "#",
                 imageUrl: document.getElementById('prod-img-preview').src
             };
-            if(id) {
-                const idx = appData.products.findIndex(p => p.id === parseInt(id));
-                appData.products[idx] = newProd;
-            } else {
-                appData.products.push(newProd);
+
+            const isSuccess = await sendToServer('save_product', newProd);
+            
+            if (isSuccess) {
+                if(id) {
+                    const idx = appData.products.findIndex(p => p.id === parseInt(id));
+                    appData.products[idx] = newProd;
+                } else {
+                    appData.products.unshift(newProd); // Letakkan di paling atas list
+                }
+                renderCMSProducts();
+                closeProductModal();
+                showAlert('Berhasil', id ? 'Produk berhasil diperbarui.' : 'Produk baru berhasil ditambahkan.', 'success');
             }
-            renderCMSProducts();
-            closeProductModal();
-            showAlert('Berhasil', id ? 'Produk berhasil diperbarui.' : 'Produk baru berhasil ditambahkan.', 'success');
         });
 
         function editProduct(id) { openProductModal(id); }
-        function deleteProduct(id) {
-            if(confirm('Yakin ingin menghapus produk ini?')) {
-                appData.products = appData.products.filter(p => p.id !== id);
-                renderCMSProducts();
+        
+        async function deleteProduct(id) {
+            if(confirm('Yakin ingin menghapus produk ini secara permanen dari server?')) {
+                const isSuccess = await sendToServer('delete_product', { id: id });
+                if (isSuccess) {
+                    appData.products = appData.products.filter(p => p.id !== id);
+                    renderCMSProducts();
+                    showAlert('Berhasil', 'Produk berhasil dihapus dari database.', 'success');
+                }
             }
         }
 
-        // PUBLIC CONTACT FORM SUBMISSION
-        document.getElementById('public-contact-form').addEventListener('submit', (e) => {
+        // PUBLIC CONTACT FORM SUBMISSION (DIHUBUNGKAN KE SERVER)
+        document.getElementById('public-contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const newMsg = {
                 id: Date.now(),
@@ -1029,13 +1121,16 @@
                 date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' })
             };
             
-            appData.messages.unshift(newMsg);
-            e.target.reset();
-            showAlert('Pesan Terkirim!', 'Terima kasih, pesan Anda telah kami terima dan akan segera kami balas.', 'success');
-            renderCMSMessages(); 
+            const isSuccess = await sendToServer('add_message', newMsg);
+            if (isSuccess) {
+                appData.messages.unshift(newMsg);
+                e.target.reset();
+                showAlert('Pesan Terkirim!', 'Terima kasih, pesan Anda telah kami terima dan akan segera kami balas.', 'success');
+                renderCMSMessages(); 
+            }
         });
 
-        // INBOX CMS ACTIONS
+        // INBOX CMS ACTIONS (DIHUBUNGKAN KE SERVER)
         function renderCMSMessages() {
             const list = document.getElementById('cms-messages-list');
             const badge = document.getElementById('msg-badge');
@@ -1067,10 +1162,15 @@
                 });
             }
         }
-        function deleteMessage(id) {
-            if(confirm('Hapus pesan ini permanen?')) {
-                appData.messages = appData.messages.filter(m => m.id !== id);
-                renderCMSMessages();
+        
+        async function deleteMessage(id) {
+            if(confirm('Hapus pesan ini permanen dari database?')) {
+                const isSuccess = await sendToServer('delete_message', { id: id });
+                if (isSuccess) {
+                    appData.messages = appData.messages.filter(m => m.id !== id);
+                    renderCMSMessages();
+                    showAlert('Berhasil', 'Pesan berhasil dihapus dari sistem.', 'success');
+                }
             }
         }
 
@@ -1098,8 +1198,8 @@
             if(icon) icon.classList.replace('ph-moon', 'ph-sun');
         }
 
-        // INITIAL LOAD
-        renderPublicUI();
+        // INITIAL LOAD: Panggil server alih-alih merender data statis
+        initializeApp();
 
     </script>
 </body>
