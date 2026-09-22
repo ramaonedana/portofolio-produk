@@ -20,6 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- SUPABASE CLIENT -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
         tailwind.config = {
@@ -43,39 +46,14 @@
     
     <style>
         /* DARK MODE OVERRIDES */
-        html.dark body {
-            background-color: #0b0f19;
-            color: #f1f5f9;
-        }
-        html.dark .bento-card, 
-        html.dark .bg-white {
-            background-color: #1e293b !important;
-            border-color: #334155 !important;
-        }
-        html.dark nav {
-            background-color: rgba(30, 41, 59, 0.95) !important;
-            border-color: #334155 !important;
-        }
-        html.dark .text-brand-dark {
-            color: #ffffff !important;
-        }
-        html.dark .text-gray-500, 
-        html.dark .text-gray-600 {
-            color: #94a3b8 !important;
-        }
-        html.dark .bg-gray-50 {
-            background-color: #0f172a !important;
-        }
-        html.dark .border-gray-100, 
-        html.dark .border-gray-200 {
-            border-color: #334155 !important;
-        }
-        html.dark input, 
-        html.dark textarea {
-            color: #ffffff !important;
-            background-color: #0f172a !important;
-            border-color: #334155 !important;
-        }
+        html.dark body { background-color: #0b0f19; color: #f1f5f9; }
+        html.dark .bento-card, html.dark .bg-white { background-color: #1e293b !important; border-color: #334155 !important; }
+        html.dark nav { background-color: rgba(30, 41, 59, 0.95) !important; border-color: #334155 !important; }
+        html.dark .text-brand-dark { color: #ffffff !important; }
+        html.dark .text-gray-500, html.dark .text-gray-600 { color: #94a3b8 !important; }
+        html.dark .bg-gray-50 { background-color: #0f172a !important; }
+        html.dark .border-gray-100, html.dark .border-gray-200 { border-color: #334155 !important; }
+        html.dark input, html.dark textarea { color: #ffffff !important; background-color: #0f172a !important; border-color: #334155 !important; }
 
         /* Styling dasar untuk Bento Box */
         .bento-card {
@@ -93,24 +71,13 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
 
         /* Kustomisasi scrollbar agar lebih estetik */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #FF8A00;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #e07900;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #FF8A00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e07900; }
     </style>
 </head>
 <body class="antialiased font-sans pt-28 bg-gray-50 dark:bg-[#0b0f19] transition-colors duration-300">
@@ -148,10 +115,10 @@
                     <a href="#" class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg shadow-md hover:-translate-y-1 transition"><i class="ph-bold ph-youtube-logo"></i></a>
                 </div>
                 <h1 id="hero-greeting" class="text-4xl md:text-6xl font-extrabold text-brand-dark mb-6 leading-tight">
-                    Halo, Saya <span class="text-brand-orange">Bodhi</span>
+                    Memuat...
                 </h1>
                 <p id="hero-desc" class="text-gray-600 mb-10 text-lg leading-relaxed max-w-lg">
-                    Saya mendesain dan mengembangkan produk digital yang cantik, fungsional, dan siap pakai. Jelajahi katalog aplikasi dan website premium saya untuk mempercepat pertumbuhan bisnis Anda.
+                    Menghubungkan ke server...
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#products" class="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition shadow-lg shadow-orange-500/30 flex items-center gap-2">
@@ -166,7 +133,7 @@
                 <!-- Ornamen Latar Belakang Lingkaran -->
                 <div class="absolute inset-0 bg-orange-100 rounded-full blur-3xl opacity-50 w-[120%] h-[120%] -left-[10%] -top-[10%] -z-10 dark:bg-orange-900/20"></div>
                 <!-- Gambar 3D Laki-laki memegang laptop -->
-                <img id="hero-image" src="https://cdni.iconscout.com/illustration/premium/thumb/web-developer-4584674-3823485.png" alt="Bodhi" class="w-full max-w-md drop-shadow-2xl animate-float object-contain">
+                <img id="hero-image" src="https://placehold.co/400x400/f3f4f6/a1a1aa?text=Loading" alt="Bodhi" class="w-full max-w-md drop-shadow-2xl animate-float object-contain">
             </div>
         </section>
 
@@ -223,7 +190,7 @@
         <section class="bento-card p-8 md:p-12" id="contact">
             <div class="flex flex-col md:flex-row gap-12 items-center">
                 <div class="md:w-5/12 flex flex-col items-center text-center">
-                    <img id="public-contact-img" src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Contact Us" class="w-48 h-48 object-cover rounded-full mb-6 border-4 border-orange-50 shadow-lg dark:border-gray-700">
+                    <img id="public-contact-img" src="https://placehold.co/400x400/f3f4f6/a1a1aa?text=Loading" alt="Contact Us" class="w-48 h-48 object-cover rounded-full mb-6 border-4 border-orange-50 shadow-lg dark:border-gray-700">
                     <h2 class="text-2xl font-bold text-brand-dark mb-2">Mari Berdiskusi</h2>
                     <p class="text-gray-500 text-sm">Tertarik membeli lisensi, melakukan kustomisasi produk, atau memiliki pertanyaan lain? Jangan ragu untuk mengirim pesan.</p>
                 </div>
@@ -358,6 +325,7 @@
 
             <!-- CMS PANELS -->
             <div class="flex-1 bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+                
                 <!-- TAB: PROFILE -->
                 <div id="tab-profile" class="cms-panel block">
                     <h2 class="text-xl font-bold text-brand-dark mb-6 border-b pb-4 dark:border-gray-700">Pengaturan Profil & Hero</h2>
@@ -514,14 +482,19 @@
         <span class="absolute right-16 bg-white text-gray-800 text-sm font-semibold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-gray-100">Hubungi via WA</span>
     </a>
 
+    <!-- FILE KONFIGURASI RAHASIA -->
+    <script src="config.js"></script>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 1. MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNB6Gi1wdUTBwuXGRhgma53hulTmZmHLejm2DieKUQj55lLSc1YMDvrOAUgcAMpsza1Q/exec'; 
+        // MENGAMBIL KUNCI DARI config.js (Jika ada), ATAU GUNAKAN DEFAULT DEMO
+        const SUPABASE_URL = typeof CONFIG !== 'undefined' ? CONFIG.SUPABASE_URL : 'https://XYZ.supabase.co'; 
+        const SUPABASE_ANON_KEY = typeof CONFIG !== 'undefined' ? CONFIG.SUPABASE_ANON_KEY : 'eyJhbGciOiJIUzI1NiIsIn...'; 
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // STATE MANAGEMENT (Diisi dengan Data Sampel Bawaan)
+        // STATE LOKAL (BESERTA DATA DEMO JIKA SUPABASE BELUM DISET)
         let appData = {
             profile: {
                 greeting: "Halo, Saya Bodhi",
@@ -530,120 +503,40 @@
                 contactImage: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
             },
             products: [
-                {
-                    id: 1,
-                    title: "EduCourse - LMS Platform",
-                    category: "Web Application",
-                    price: 850000,
-                    promoPrice: 499000,
-                    techStack: "React, Node.js, Tailwind CSS",
-                    description: "Platform Learning Management System (LMS) lengkap dengan fitur video kursus, kuis interaktif, dan sertifikat otomatis. Sangat cocok untuk kreator edukasi atau sekolah.",
-                    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    demoUrl: "#"
-                },
-                {
-                    id: 2,
-                    title: "FinDash - Admin UI Kit",
-                    category: "UI Kit",
-                    price: 250000,
-                    promoPrice: 0,
-                    techStack: "Figma, Design System",
-                    description: "UI Kit dashboard keuangan premium dengan lebih dari 50+ komponen siap pakai. Dirancang khusus untuk mempermudah desainer & developer membangun aplikasi SaaS finansial.",
-                    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    demoUrl: "#"
-                },
-                {
-                    id: 3,
-                    title: "RestoPOS - Aplikasi Kasir",
-                    category: "Mobile App",
-                    price: 1200000,
-                    promoPrice: 899000,
-                    techStack: "Flutter, Firebase",
-                    description: "Aplikasi kasir (Point of Sales) multi-platform untuk restoran dan kafe. Mendukung pencetakan struk thermal bluetooth dan manajemen stok bahan baku secara real-time.",
-                    imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                    demoUrl: "#"
-                }
+                { id: 1, title: "Nexus Dashboard", category: "SaaS", price: 499000, promoPrice: null, techStack: "React, Node.js, Tailwind", description: "Dashboard analitik komprehensif untuk memantau performa penjualan.", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", demoUrl: "#" },
+                { id: 2, title: "Aura Commerce", category: "E-Commerce", price: 850000, promoPrice: 499000, techStack: "Next.js, Supabase", description: "Aplikasi toko online siap pakai dengan keranjang dinamis.", imageUrl: "https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", demoUrl: "#" }
             ],
-            messages: [
-                {
-                    id: 101,
-                    name: "Budi Santoso",
-                    email: "budi.santoso@email.com",
-                    subject: "Kustomisasi EduCourse",
-                    message: "Halo Bodhi, saya tertarik dengan produk EduCourse. Apakah kodenya bisa dikustomisasi untuk menambahkan fitur integrasi Zoom Meeting API? Terima kasih.",
-                    date: "22 Sep 2026, 10:30"
-                }
-            ]
+            messages: []
         };
 
-        // FUNGSI INIT DATABASE: Mengambil data dari Google Sheets saat web dibuka
-        async function initializeApp() {
-            // Tampilkan data sampel terlebih dahulu ke UI agar layar tidak kosong
-            renderPublicUI();
+        let activeFilter = 'Semua';
+        let searchQuery = '';
+        let selectedProductForCheckout = null;
 
-            if (SCRIPT_URL === 'PASTE_URL_WEB_APP_ANDA_DI_SINI') {
-                showAlert('Mode Demo Aktif', 'URL Google Apps Script belum diisi. Website saat ini menampilkan data sampel bawaan. Segala perubahan melalui CMS hanya akan tersimpan sementara.', 'error');
+        async function loadSupabaseData() {
+            // Cek apakah kunci masih default
+            if (SUPABASE_URL.includes('XYZ.supabase.co')) {
+                console.warn("Mode Demo: Kunci Supabase belum dimasukkan.");
+                renderPublicUI();
                 return;
             }
 
             try {
-                // Tampilkan loading screen jika URL ada
-                const m = document.getElementById('alert-modal');
-                const c = document.getElementById('alert-card');
-                const icon = document.getElementById('alert-icon');
-                const btn = document.getElementById('alert-btn');
-                
-                document.getElementById('alert-title').innerText = 'Memuat Data Server';
-                document.getElementById('alert-message').innerText = 'Menyinkronkan data dari Google Sheets...';
-                icon.innerHTML = '<div class="w-20 h-20 rounded-full flex items-center justify-center bg-orange-100"><i class="ph-bold ph-spinner animate-spin text-[40px] text-brand-orange"></i></div>';
-                btn.className = 'hidden'; 
-                m.classList.remove('hidden');
-                setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-90'); c.classList.add('scale-100'); }, 10);
+                const { data: profData } = await _supabase.from('profile').select('*').eq('id', 1).single();
+                if (profData) appData.profile = profData;
 
-                // Fetch ke Server Google
-                const response = await fetch(SCRIPT_URL);
-                const result = await response.json();
-                
-                if (result.status === 'success') {
-                    appData = result.data;
-                    renderPublicUI(); // Render ulang dengan data asli dari server
-                    closeAlert();
-                } else {
-                    showAlert('Gagal Memuat Data', result.message, 'error');
-                }
+                const { data: prodData } = await _supabase.from('products').select('*').order('id', { ascending: false });
+                if (prodData) appData.products = prodData;
+
+                const { data: msgData } = await _supabase.from('messages').select('*').order('id', { ascending: false });
+                if (msgData) appData.messages = msgData;
+
+                renderPublicUI();
             } catch (error) {
-                showAlert('Koneksi Terputus', 'Gagal menyambungkan ke Database. Pastikan Anda memiliki koneksi internet yang stabil.', 'error');
+                console.error("Gagal memuat Supabase:", error);
+                renderPublicUI(); // Render fallback
             }
         }
-
-        // FUNGSI KOMUNIKASI POST KE SERVER
-        async function sendToServer(action, data) {
-            showAlert('Menyimpan Data...', 'Berkomunikasi dengan server database...', 'loading');
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    // Kirim sebagai teks murni untuk menghindari proteksi CORS bawaan peramban
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
-                    body: JSON.stringify({ action: action, data: data })
-                });
-                const result = await response.json();
-                
-                if(result.status === 'success') {
-                    return true;
-                } else {
-                    showAlert('Gagal Menyimpan', result.message, 'error');
-                    return false;
-                }
-            } catch(error) {
-                showAlert('Error Koneksi', 'Gagal memproses ke server.', 'error');
-                return false;
-            }
-        }
-
-        // VARIABEL FILTER & SEARCH
-        let activeFilter = 'Semua';
-        let searchQuery = '';
-        let selectedProductForCheckout = null;
 
         // SCROLL SPY LOGIC
         window.addEventListener('scroll', () => {
@@ -653,11 +546,9 @@
                 const element = document.getElementById(sec);
                 if(element) {
                     const top = window.scrollY;
-                    const offset = element.offsetTop - 200; // tolerance
+                    const offset = element.offsetTop - 200;
                     const height = element.offsetHeight;
-                    if(top >= offset && top < offset + height) {
-                        current = sec;
-                    }
+                    if(top >= offset && top < offset + height) current = sec;
                 }
             });
 
@@ -672,11 +563,9 @@
             }
         });
 
-        // RENDER FILTER KATEGORI
         function renderFilters() {
             const container = document.getElementById('filter-container');
             if(!container) return;
-            
             const categories = new Set(appData.products.map(p => p.category));
             let filterHTML = `<button onclick="setFilter('Semua')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold transition whitespace-nowrap ${activeFilter === 'Semua' ? 'bg-brand-orange text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-brand-orange'}">Semua</button>`;
             
@@ -692,13 +581,11 @@
             renderProductsGrid();
         }
 
-        // PENCARIAN
         document.getElementById('search-input')?.addEventListener('input', (e) => {
             searchQuery = e.target.value.toLowerCase();
             renderProductsGrid();
         });
 
-        // RENDER PRODUK GRID
         function renderProductsGrid() {
             const grid = document.getElementById('product-grid');
             if(!grid) return;
@@ -706,7 +593,7 @@
             
             let filteredProducts = appData.products.filter(prod => {
                 const matchCategory = activeFilter === 'Semua' || prod.category === activeFilter;
-                const matchSearch = prod.title.toLowerCase().includes(searchQuery) || prod.techStack.toLowerCase().includes(searchQuery);
+                const matchSearch = prod.title.toLowerCase().includes(searchQuery) || (prod.techStack && prod.techStack.toLowerCase().includes(searchQuery));
                 return matchCategory && matchSearch;
             });
             
@@ -756,7 +643,6 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number || 0);
         }
 
-        // PUBLIC UI MAIN RENDER
         function renderPublicUI() {
             let greetHTML = appData.profile.greeting;
             if(greetHTML.includes('Bodhi')) greetHTML = greetHTML.replace('Bodhi', '<span class="text-brand-orange">Bodhi</span>');
@@ -772,11 +658,9 @@
             renderProductsGrid();
         }
 
-        // PUBLIC PRODUCT MODAL LOGIC
         function openPublicProductModal(id) {
             const prod = appData.products.find(p => p.id === id);
             if(!prod) return;
-            
             selectedProductForCheckout = prod;
 
             document.getElementById('detail-img').src = prod.imageUrl;
@@ -784,7 +668,6 @@
             document.getElementById('detail-title').innerText = prod.title;
             document.getElementById('detail-desc').innerText = prod.description;
             
-            // Harga & Promo Badge
             const priceContainer = document.getElementById('detail-price-container');
             const promoBadge = document.getElementById('detail-promo-badge');
             
@@ -799,14 +682,11 @@
                 promoBadge.classList.add('hidden');
             }
             
-            // Render Tech Stack
             const techContainer = document.getElementById('detail-tech');
             techContainer.innerHTML = '';
             const techs = prod.techStack ? prod.techStack.split(',') : [];
             techs.forEach(t => {
-                if(t.trim()) {
-                    techContainer.innerHTML += `<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600">${t.trim()}</span>`;
-                }
+                if(t.trim()) techContainer.innerHTML += `<span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600">${t.trim()}</span>`;
             });
 
             const demoBtn = document.getElementById('detail-demo-btn');
@@ -830,25 +710,19 @@
             setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
         }
 
-        // SIMULASI CHECKOUT PAYMENT GATEWAY
         function simulateCheckout() {
             if(!selectedProductForCheckout) return;
             closePublicProductModal();
-            
             showAlert('Menghubungkan ke Payment Gateway...', 'Mempersiapkan rincian tagihan untuk ' + selectedProductForCheckout.title, 'loading');
             
             setTimeout(() => {
                 closeAlert();
-                
-                // Gunakan Harga Promo jika ada
                 const finalPrice = selectedProductForCheckout.promoPrice > 0 ? selectedProductForCheckout.promoPrice : selectedProductForCheckout.price;
-                
                 const message = `Halo Bodhi, saya ingin membeli lisensi produk *${selectedProductForCheckout.title}* seharga ${formatRupiah(finalPrice)}. Bagaimana cara pembayarannya?`;
                 window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(message)}`, '_blank');
             }, 2000);
         }
 
-        // CUSTOM ALERT SYSTEM
         function showAlert(title, message, type = 'success') {
             const modal = document.getElementById('alert-modal');
             const card = document.getElementById('alert-card');
@@ -872,111 +746,75 @@
             }
 
             modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                card.classList.remove('scale-90');
-                card.classList.add('scale-100');
-            }, 10);
+            setTimeout(() => { modal.classList.remove('opacity-0'); card.classList.remove('scale-90'); card.classList.add('scale-100'); }, 10);
         }
 
         function closeAlert() {
             const modal = document.getElementById('alert-modal');
             const card = document.getElementById('alert-card');
-            modal.classList.add('opacity-0');
-            card.classList.remove('scale-100');
-            card.classList.add('scale-90');
+            modal.classList.add('opacity-0'); card.classList.remove('scale-100'); card.classList.add('scale-90');
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // FILE UPLOAD LOGIC
         function handleImageUpload(event, previewElementId) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById(previewElementId).src = e.target.result;
-                }
+                reader.onload = function(e) { document.getElementById(previewElementId).src = e.target.result; }
                 reader.readAsDataURL(file);
             }
         }
-        function removeProfileImage() {
-            document.getElementById('cms-hero-img').value = '';
-            document.getElementById('cms-hero-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Profile';
-        }
-        function removeContactImage() {
-            document.getElementById('cms-contact-img').value = '';
-            document.getElementById('cms-contact-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Image';
-        }
-        function removeProductImage() {
-            document.getElementById('prod-img').value = '';
-            document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image';
-        }
+        function removeProfileImage() { document.getElementById('cms-hero-img').value = ''; document.getElementById('cms-hero-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Profile'; }
+        function removeContactImage() { document.getElementById('cms-contact-img').value = ''; document.getElementById('cms-contact-img-preview').src = 'https://placehold.co/400x400/f3f4f6/a1a1aa?text=No+Image'; }
+        function removeProductImage() { document.getElementById('prod-img').value = ''; document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image'; }
 
         document.getElementById('cms-hero-img').addEventListener('change', (e) => handleImageUpload(e, 'cms-hero-img-preview'));
         document.getElementById('cms-contact-img').addEventListener('change', (e) => handleImageUpload(e, 'cms-contact-img-preview'));
         document.getElementById('prod-img').addEventListener('change', (e) => handleImageUpload(e, 'prod-img-preview'));
 
-        // CMS AUTHENTICATION & VIEW TOGGLE
         function openLoginModal() {
-            const m = document.getElementById('login-modal');
-            const c = document.getElementById('login-card');
-            m.classList.remove('hidden');
-            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
+            const m = document.getElementById('login-modal'); const c = document.getElementById('login-card');
+            m.classList.remove('hidden'); setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
         }
         function closeLoginModal() {
-            const m = document.getElementById('login-modal');
-            const c = document.getElementById('login-card');
+            const m = document.getElementById('login-modal'); const c = document.getElementById('login-card');
             m.classList.add('opacity-0'); c.classList.add('scale-95');
             setTimeout(() => { m.classList.add('hidden'); document.getElementById('admin-password').value = ''; }, 300);
         }
         function attemptLogin() {
-            const pass = document.getElementById('admin-password').value;
-            if(pass === 'admin') {
-                closeLoginModal();
-                showCMS();
-            } else {
-                showAlert('Akses Ditolak', 'Kata sandi yang Anda masukkan salah.', 'error');
-            }
+            if(document.getElementById('admin-password').value === 'admin') { closeLoginModal(); showCMS(); } 
+            else { showAlert('Akses Ditolak', 'Kata sandi salah.', 'error'); }
         }
+
         function showCMS() {
-            document.getElementById('public-view').classList.add('hidden');
-            document.querySelector('nav').classList.add('hidden'); 
-            const waBtn = document.getElementById('floating-wa');
-            if(waBtn) waBtn.classList.add('hidden');
+            document.getElementById('public-view').classList.add('hidden'); document.querySelector('nav').classList.add('hidden'); 
             document.querySelector('footer').classList.add('hidden');
+            const waBtn = document.getElementById('floating-wa'); if(waBtn) waBtn.classList.add('hidden');
             
-            document.getElementById('cms-view').classList.remove('hidden');
-            document.getElementById('cms-view').classList.add('flex');
+            document.getElementById('cms-view').classList.remove('hidden'); document.getElementById('cms-view').classList.add('flex');
             
             document.getElementById('cms-hero-greeting').value = appData.profile.greeting;
             document.getElementById('cms-hero-desc').value = appData.profile.description;
-            document.getElementById('cms-hero-img').value = ''; 
             document.getElementById('cms-hero-img-preview').src = appData.profile.imageUrl;
-            document.getElementById('cms-contact-img').value = ''; 
             document.getElementById('cms-contact-img-preview').src = appData.profile.contactImage;
 
             switchAdminTab('tab-profile');
-            renderCMSProducts();
-            renderCMSMessages();
-            window.scrollTo(0, 0);
+            renderCMSProducts(); renderCMSMessages(); window.scrollTo(0, 0);
         }
+
         function logoutAdmin() {
-            document.getElementById('cms-view').classList.add('hidden');
-            document.getElementById('cms-view').classList.remove('flex');
-            document.getElementById('public-view').classList.remove('hidden');
-            document.querySelector('nav').classList.remove('hidden');
-            const waBtn = document.getElementById('floating-wa');
-            if(waBtn) waBtn.classList.remove('hidden');
+            document.getElementById('cms-view').classList.add('hidden'); document.getElementById('cms-view').classList.remove('flex');
+            document.getElementById('public-view').classList.remove('hidden'); document.querySelector('nav').classList.remove('hidden');
             document.querySelector('footer').classList.remove('hidden');
+            const waBtn = document.getElementById('floating-wa'); if(waBtn) waBtn.classList.remove('hidden');
             
-            renderPublicUI();
-            window.scrollTo(0, 0);
-            showAlert('Sampai Jumpa', 'Anda telah keluar dari CMS. Semua perubahan telah diaplikasikan ke halaman publik.', 'success');
+            renderPublicUI(); window.scrollTo(0, 0);
+            showAlert('Sampai Jumpa', 'Anda telah keluar dari CMS. Perubahan diaplikasikan ke halaman publik.', 'success');
         }
+
         function switchAdminTab(tabId) {
             document.querySelectorAll('.cms-panel').forEach(el => el.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-            document.getElementById(tabId).classList.add('block');
+            document.getElementById(tabId).classList.remove('hidden'); document.getElementById(tabId).classList.add('block');
             document.querySelectorAll('.cms-tab-btn').forEach(btn => {
                 btn.classList.remove('bg-brand-orange', 'text-white', 'shadow-md');
                 btn.classList.add('bg-white', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
@@ -986,33 +824,31 @@
             activeBtn.classList.remove('bg-white', 'text-gray-600', 'dark:bg-gray-800', 'dark:text-gray-300');
         }
 
-        // PROFILE CMS ACTIONS (DIHUBUNGKAN KE SERVER)
         document.getElementById('cms-profile-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            
             const newData = {
+                id: 1, 
                 greeting: document.getElementById('cms-hero-greeting').value,
                 description: document.getElementById('cms-hero-desc').value,
-                imageUrl: document.getElementById('cms-hero-img-preview').src,
+                imageUrl: document.getElementById('cms-hero-img-preview').src, 
                 contactImage: document.getElementById('cms-contact-img-preview').src
             };
 
-            const isSuccess = await sendToServer('update_profile', newData);
-            if (isSuccess) {
-                appData.profile = newData;
-                showAlert('Tersimpan', 'Pengaturan profil dan hero banner berhasil diperbarui.', 'success');
+            if(!SUPABASE_URL.includes('XYZ')) {
+                showAlert('Menyimpan...', 'Menyinkronkan data profil ke server...', 'loading');
+                const { error } = await _supabase.from('profile').upsert(newData);
+                if(error) return showAlert('Gagal Menyimpan', error.message, 'error');
             }
+            appData.profile = newData;
+            showAlert('Tersimpan', 'Pengaturan profil dan hero banner berhasil diperbarui.', 'success');
         });
 
-        // PRODUCTS CMS ACTIONS (DIHUBUNGKAN KE SERVER)
         function renderCMSProducts() {
-            const tbody = document.getElementById('cms-product-table-body');
-            tbody.innerHTML = '';
+            const tbody = document.getElementById('cms-product-table-body'); tbody.innerHTML = '';
             appData.products.forEach(prod => {
                 let priceText = formatRupiah(prod.price);
-                if(prod.promoPrice && prod.promoPrice > 0) {
-                    priceText = `<span class="line-through text-xs text-gray-400 block">${formatRupiah(prod.price)}</span><span class="text-brand-orange font-bold">${formatRupiah(prod.promoPrice)}</span>`;
-                }
-
+                if(prod.promoPrice && prod.promoPrice > 0) { priceText = `<span class="line-through text-xs text-gray-400 block">${formatRupiah(prod.price)}</span><span class="text-brand-orange font-bold">${formatRupiah(prod.promoPrice)}</span>`; }
                 tbody.innerHTML += `
                     <tr>
                         <td class="py-3 px-4"><img src="${prod.imageUrl}" class="w-16 h-10 object-cover rounded-md border border-gray-200 dark:border-gray-600"></td>
@@ -1029,120 +865,94 @@
         }
 
         function openProductModal(id = null) {
-            const m = document.getElementById('product-modal');
-            const c = document.getElementById('product-card');
-            const form = document.getElementById('cms-product-form');
-            form.reset();
-            document.getElementById('prod-img').value = ''; 
-
+            const m = document.getElementById('product-modal'); const c = document.getElementById('product-card');
+            document.getElementById('cms-product-form').reset(); document.getElementById('prod-img').value = ''; 
             if(id) {
                 document.getElementById('prod-modal-title').innerText = "Edit Produk";
                 const prod = appData.products.find(p => p.id === id);
-                document.getElementById('prod-id').value = prod.id;
-                document.getElementById('prod-title').value = prod.title;
-                document.getElementById('prod-category').value = prod.category;
-                document.getElementById('prod-price').value = prod.price || 0;
-                document.getElementById('prod-promo').value = prod.promoPrice || ''; 
-                document.getElementById('prod-tech').value = prod.techStack || '';
-                document.getElementById('prod-desc').value = prod.description;
-                document.getElementById('prod-link').value = prod.demoUrl === '#' ? '' : prod.demoUrl;
+                document.getElementById('prod-id').value = prod.id; document.getElementById('prod-title').value = prod.title;
+                document.getElementById('prod-category').value = prod.category; document.getElementById('prod-price').value = prod.price || 0;
+                document.getElementById('prod-promo').value = prod.promoPrice || ''; document.getElementById('prod-tech').value = prod.techStack || '';
+                document.getElementById('prod-desc').value = prod.description; document.getElementById('prod-link').value = prod.demoUrl === '#' ? '' : prod.demoUrl;
                 document.getElementById('prod-img-preview').src = prod.imageUrl;
             } else {
                 document.getElementById('prod-modal-title').innerText = "Tambah Produk Baru";
-                document.getElementById('prod-id').value = "";
-                document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image';
+                document.getElementById('prod-id').value = ""; document.getElementById('prod-img-preview').src = 'https://placehold.co/400x300/f3f4f6/a1a1aa?text=No+Image';
             }
-
-            m.classList.remove('hidden'); m.classList.add('flex');
-            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
+            m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); }, 10);
         }
+        
         function closeProductModal() {
-            const m = document.getElementById('product-modal');
-            const c = document.getElementById('product-card');
-            m.classList.add('opacity-0'); c.classList.add('scale-95');
-            setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
+            const m = document.getElementById('product-modal'); const c = document.getElementById('product-card');
+            m.classList.add('opacity-0'); c.classList.add('scale-95'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
         }
 
         document.getElementById('cms-product-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const id = document.getElementById('prod-id').value;
+            const idInput = document.getElementById('prod-id').value;
             const promoVal = document.getElementById('prod-promo').value;
-            const parsedPromo = promoVal ? parseInt(promoVal) : null;
-
+            
             const newProd = {
-                id: id ? parseInt(id) : Date.now(),
-                title: document.getElementById('prod-title').value,
-                category: document.getElementById('prod-category').value,
-                price: parseInt(document.getElementById('prod-price').value) || 0,
-                promoPrice: parsedPromo,
-                techStack: document.getElementById('prod-tech').value,
-                description: document.getElementById('prod-desc').value,
-                demoUrl: document.getElementById('prod-link').value || "#",
+                id: idInput ? parseInt(idInput) : Date.now(), title: document.getElementById('prod-title').value,
+                category: document.getElementById('prod-category').value, price: parseInt(document.getElementById('prod-price').value) || 0,
+                promoPrice: promoVal ? parseInt(promoVal) : null, techStack: document.getElementById('prod-tech').value,
+                description: document.getElementById('prod-desc').value, demoUrl: document.getElementById('prod-link').value || "#",
                 imageUrl: document.getElementById('prod-img-preview').src
             };
 
-            const isSuccess = await sendToServer('save_product', newProd);
-            
-            if (isSuccess) {
-                if(id) {
-                    const idx = appData.products.findIndex(p => p.id === parseInt(id));
-                    appData.products[idx] = newProd;
-                } else {
-                    appData.products.unshift(newProd); // Letakkan di paling atas list
-                }
-                renderCMSProducts();
-                closeProductModal();
-                showAlert('Berhasil', id ? 'Produk berhasil diperbarui.' : 'Produk baru berhasil ditambahkan.', 'success');
+            if(!SUPABASE_URL.includes('XYZ')) {
+                showAlert('Menyimpan...', 'Menyimpan data produk ke server...', 'loading');
+                const { error } = await _supabase.from('products').upsert(newProd);
+                if(error) return showAlert('Gagal Menyimpan', error.message, 'error');
             }
+
+            if(idInput) { const idx = appData.products.findIndex(p => p.id === parseInt(idInput)); appData.products[idx] = newProd; } 
+            else { appData.products.unshift(newProd); }
+            
+            renderCMSProducts(); closeProductModal();
+            showAlert('Berhasil', idInput ? 'Produk berhasil diperbarui.' : 'Produk baru berhasil ditambahkan.', 'success');
         });
 
         function editProduct(id) { openProductModal(id); }
-        
         async function deleteProduct(id) {
-            if(confirm('Yakin ingin menghapus produk ini secara permanen dari server?')) {
-                const isSuccess = await sendToServer('delete_product', { id: id });
-                if (isSuccess) {
-                    appData.products = appData.products.filter(p => p.id !== id);
-                    renderCMSProducts();
-                    showAlert('Berhasil', 'Produk berhasil dihapus dari database.', 'success');
+            if(confirm('Yakin ingin menghapus produk ini permanen?')) {
+                if(!SUPABASE_URL.includes('XYZ')) {
+                    showAlert('Menghapus...', 'Menghapus data dari server...', 'loading');
+                    const { error } = await _supabase.from('products').delete().eq('id', id);
+                    if(error) return showAlert('Gagal Menghapus', error.message, 'error');
                 }
+                appData.products = appData.products.filter(p => p.id !== id);
+                renderCMSProducts();
+                showAlert('Berhasil', 'Produk berhasil dihapus.', 'success');
             }
         }
 
-        // PUBLIC CONTACT FORM SUBMISSION (DIHUBUNGKAN KE SERVER)
         document.getElementById('public-contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const newMsg = {
-                id: Date.now(),
-                name: document.getElementById('contact-name').value,
-                email: document.getElementById('contact-email').value,
-                subject: document.getElementById('contact-subject').value,
-                message: document.getElementById('contact-message').value,
+                id: Date.now(), name: document.getElementById('contact-name').value, email: document.getElementById('contact-email').value,
+                subject: document.getElementById('contact-subject').value, message: document.getElementById('contact-message').value,
                 date: new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' })
             };
             
-            const isSuccess = await sendToServer('add_message', newMsg);
-            if (isSuccess) {
-                appData.messages.unshift(newMsg);
-                e.target.reset();
-                showAlert('Pesan Terkirim!', 'Terima kasih, pesan Anda telah kami terima dan akan segera kami balas.', 'success');
-                renderCMSMessages(); 
+            if(!SUPABASE_URL.includes('XYZ')) {
+                showAlert('Mengirim...', 'Menghubungkan ke server...', 'loading');
+                const { error } = await _supabase.from('messages').insert([newMsg]);
+                if(error) return showAlert('Gagal Mengirim', 'Sistem gagal mengirim. Coba lagi.', 'error');
             }
+            
+            appData.messages.unshift(newMsg); e.target.reset();
+            showAlert('Pesan Terkirim!', 'Terima kasih, pesan Anda telah kami terima.', 'success');
+            renderCMSMessages(); 
         });
 
-        // INBOX CMS ACTIONS (DIHUBUNGKAN KE SERVER)
         function renderCMSMessages() {
-            const list = document.getElementById('cms-messages-list');
-            const badge = document.getElementById('msg-badge');
-            list.innerHTML = '';
-            
+            const list = document.getElementById('cms-messages-list'); const badge = document.getElementById('msg-badge'); list.innerHTML = '';
             if(appData.messages.length === 0) {
                 list.innerHTML = '<div class="text-center text-gray-400 py-10 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700">Belum ada pesan masuk.</div>';
                 badge.classList.add('hidden');
             } else {
-                badge.innerText = appData.messages.length;
-                badge.classList.remove('hidden');
-                
+                badge.innerText = appData.messages.length; badge.classList.remove('hidden');
                 appData.messages.forEach(msg => {
                     list.innerHTML += `
                         <div class="bg-gray-50 dark:bg-gray-900 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 flex flex-col gap-3">
@@ -1162,45 +972,39 @@
                 });
             }
         }
-        
+
         async function deleteMessage(id) {
-            if(confirm('Hapus pesan ini permanen dari database?')) {
-                const isSuccess = await sendToServer('delete_message', { id: id });
-                if (isSuccess) {
-                    appData.messages = appData.messages.filter(m => m.id !== id);
-                    renderCMSMessages();
-                    showAlert('Berhasil', 'Pesan berhasil dihapus dari sistem.', 'success');
+            if(confirm('Hapus pesan ini permanen?')) {
+                if(!SUPABASE_URL.includes('XYZ')) {
+                    showAlert('Menghapus...', 'Menghapus data...', 'loading');
+                    const { error } = await _supabase.from('messages').delete().eq('id', id);
+                    if(error) return showAlert('Gagal Menghapus', error.message, 'error');
                 }
+                appData.messages = appData.messages.filter(m => m.id !== id);
+                renderCMSMessages();
+                showAlert('Berhasil', 'Pesan dihapus.', 'success');
             }
         }
 
-        // THEME TOGGLE LOGIC
         function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.querySelector('#theme-toggle i');
-            
+            const html = document.documentElement; const icon = document.querySelector('#theme-toggle i');
             if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.classList.remove('ph-sun');
-                icon.classList.add('ph-moon');
+                html.classList.remove('dark'); icon.classList.remove('ph-sun'); icon.classList.add('ph-moon');
                 localStorage.setItem('theme', 'light');
             } else {
-                html.classList.add('dark');
-                icon.classList.remove('ph-moon');
-                icon.classList.add('ph-sun');
+                html.classList.add('dark'); icon.classList.remove('ph-moon'); icon.classList.add('ph-sun');
                 localStorage.setItem('theme', 'dark');
             }
         }
-        // INIT THEME
+
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
             const icon = document.querySelector('#theme-toggle i');
             if(icon) icon.classList.replace('ph-moon', 'ph-sun');
         }
 
-        // INITIAL LOAD: Panggil server alih-alih merender data statis
-        initializeApp();
-
+        // INIT LOAD
+        loadSupabaseData();
     </script>
 </body>
 </html>
